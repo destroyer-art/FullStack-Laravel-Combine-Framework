@@ -19,13 +19,14 @@ use Illuminate\Support\Facades\Route;
     * @created 21/12/2022
     * @description routes
 */
-Route::middleware('auth:sanctum') -> groups(function(){
-    Route::post('/logout', [AuthController::class, 'Logout']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-});
 
+    Route::apiResource('/users', UserController::class);
+});
 
 
 Route::post('/signup', [AuthController::class, 'SignUp']);

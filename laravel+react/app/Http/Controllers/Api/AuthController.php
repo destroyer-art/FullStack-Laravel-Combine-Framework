@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Http\Requests\LogoutRequest;
 use App\Http\Requests\SignupRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -55,7 +55,8 @@ class AuthController extends Controller
      * @description APi Logout
     */
 
-    public function Logout(LogoutRequest $request){
+    public function Logout(Request $request){
+        /** @var \App\Models\User $user */
         $user = $request->user();
         $user->currentAccessToken()->delete();
         return response('', 204);
